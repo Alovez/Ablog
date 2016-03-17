@@ -30,7 +30,7 @@ Post.prototype.save = function(callback) {
         if(err){
             return callback(err);
         }
-        db.collection('post', function(err, collection){
+        db.collection('posts', function(err, collection){
             if(err){
                 mongodb.close();
                 return callback(err);
@@ -54,7 +54,7 @@ Post.getAll = function(name, callback){
         if(err){
             return callback(err);
         }
-        db.collection('post', function(err, collection){
+        db.collection('posts', function(err, collection){
             if(err){
                 mongodb.close();
                 return callback(err);
@@ -85,7 +85,7 @@ Post.getOne = function(name, day, title, callback) {
         if(err){
             return callback(err);
         }
-        db.collection('post', function(err, collection){
+        db.collection('posts', function(err, collection){
             if(err){
                 mongodb.close();
                 return callback(err);
@@ -111,7 +111,7 @@ Post.edit = function(name, day, title, callback){
         if(err){
             return callback(err);
         }
-        db.collection('post', function(err, collection){
+        db.collection('posts', function(err, collection){
             if(err){
                 mongodb.close();
                 return callback(err);
@@ -131,7 +131,7 @@ Post.edit = function(name, day, title, callback){
     });
 };
 
-Post.update = function (name, day, tiitle, post, callback){
+Post.update = function (name, day, title, post, callback){
     mongodb.open(function(err, db){
         if(err){
             return callback(err);
