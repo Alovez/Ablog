@@ -215,8 +215,8 @@ module.exports = function(app) {
         });
     });
     
-    app.post('/remove/:name/:day/:title', checkLogin);
-    app.post('/remove/:name/:day/:title', function(req, res){
+    app.get('/remove/:name/:day/:title', checkLogin);
+    app.get('/remove/:name/:day/:title', function(req, res){
         var currentUser = req.session.user;
         Post.remove(currentUser.name, req.params.day, req.params.title, function(err){
             if(err){
