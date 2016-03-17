@@ -183,6 +183,25 @@ module.exports = function(app) {
         });
     });
     
+    app.get('/edit/:name/:day/:title', checkLogin);
+    app.get('/edit/:name/:day/:title', function(req, res){
+       var currentUser = req.session.user;
+       Post.edit(currentUser.name, req.params.day, req.params.title, function(err, post){
+           if(err){
+               req.flash('error', err);
+               return res.redirect('/');
+           }
+           res.render('edit', {
+               title: "编辑",
+               post: post,
+               user: req.session.lyuser,
+               success: req.flash('success').toString(),
+               error: req.flash('error').toString()
+           });
+       });
+    });
+    
+    
     function checkLogin(req, res, next) {
         if(!req.session.user){
             req.flash('error', "尚未登陆!");

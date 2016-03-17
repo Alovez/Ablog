@@ -105,3 +105,55 @@ Post.getOne = function(name, day, title, callback) {
         })
     })
 }
+
+Post.edit = function(name, day, title, callback){
+    mongodb.open(function(err, db){
+        if(err){
+            return callback(err);
+        }
+        db.collection('post', function(err, collection){
+            if(err){
+                mongodb.close();
+                return callback(err);
+            }
+            collection.findOne({
+                "name": name,
+                "time.day": day,
+                "title": title,
+            }, function(err, doc){
+                mongodb.close();
+                if(err){
+                    return callback(err);
+                }
+                callback(null, doc);
+            });
+        });
+    });
+};
+
+Post.update = function (name, day, tiitle, post, callback){
+    mongodb.open(function(err, db){
+        if(err){
+            return callback(err);
+        }
+        db.collection('posts', function(err, collection){
+            if(err){
+                mongodb.close();
+                return callback(err);
+            }
+            collection.update({
+                "name": name,
+                "time.day": day,
+                "title": title
+            }, {
+                $set: {post: post}
+            }, function(err){
+                mongodb.close();
+                if(err){
+                    return callback(err);
+                }
+                callback(null);
+            });
+        });
+    });
+};
