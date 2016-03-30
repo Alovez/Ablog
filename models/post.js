@@ -23,7 +23,8 @@ Post.prototype.save = function(callback) {
         name: this.name,
         time: time,
         title: this.title,
-        post: this.post
+        post: this.post,
+        comments: []
     };
     
     mongodb.open(function(err, db){
@@ -99,7 +100,12 @@ Post.getOne = function(name, day, title, callback) {
                 if(err){
                     return callback(err);
                 }
-                doc.post = markdown.toHTML(doc.post);
+                if(doc){
+                    doc.post = markdown.toHTML(doc.post);
+                    doc.comments.fopreach(function(comment){
+                        Comment.comtent = markdown.toHTML();
+                    })
+                }
                 callback(null, doc);
             })
         })
