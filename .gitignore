@@ -3,3 +3,4 @@
 /.vscode/
 push.bat
 pull.bat
+push.sh
