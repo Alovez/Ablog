@@ -1,4 +1,4 @@
-var mongodb = require('./db')
+var mongodb = require('./db'),
     markdown = require('markdown').markdown;
 
 function Post(name, title, post){
@@ -104,14 +104,14 @@ Post.getOne = function(name, day, title, callback) {
                 if(doc){
                     doc.post = markdown.toHTML(doc.post);
                     doc.comments.forEach(function(comment){
-                        Comment.comtent = markdown.toHTML();
-                    })
+                        comment.content = markdown.toHTML(comment.content);
+                    });
                 }
                 callback(null, doc);
-            })
-        })
-    })
-}
+            });
+        });
+    });
+};
 
 Post.edit = function(name, day, title, callback){
     mongodb.open(function(err, db){
