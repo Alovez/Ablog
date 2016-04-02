@@ -1,8 +1,12 @@
 <br/>
 <% post.comments.forEach(function(comment, index) { %>
+<br />
+<hr></hr>
 <p><a href="<%= comment.website %>"><%= comment.name %></a>
 <span class="info"> 回复于 <%= comment.time %></span></p>
 <p><%- comment.content %></p>
+<br />
+<br />
 <% }) %>
 
 <form method="post">

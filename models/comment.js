@@ -26,7 +26,7 @@ Comment.prototype.save = function(callback){
             
             collection.update({
                 "name": name,
-                "timt.day": day,
+                "time.day": day,
                 "title": title
             }, {
                 $push:{"comments": comment}
