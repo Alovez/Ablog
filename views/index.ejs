@@ -2,9 +2,10 @@
 <% posts.forEach(function(post, index){ %>
 <p><h2><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h2></p>
 <p class="info">
-    作者：<a href="#"><%= post.name %></a> |
+    作者：<a href="/u/<%= post.name %>"><%= post.name %></a> |
     日期：<%= post.time.minute %>
 </p>
-<p><%- post.post %></p>
+<p><%- post.post.substr(0,35) %></p>
+<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
 <% }) %>
 <%- include footer %>

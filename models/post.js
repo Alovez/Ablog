@@ -73,9 +73,9 @@ Post.getAll = function(name, callback){
                 if(err){
                     return callback(err);
                 }
-                docs.forEach(function (doc){
-                    doc.post = markdown.toHTML(doc.post);
-                });
+                // docs.forEach(function (doc){
+                //     doc.post = markdown.toHTML(doc.post);
+                // });
                 callback(null, docs);
             });
         });
