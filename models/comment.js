@@ -14,7 +14,7 @@ Comment.prototype.save = function(callback){
     title = this.title,
     comment = this.comment;
     
-    monogodb.open(function(err, db){
+    mongodb.open(function(err, db){
         if(err){
             return callback(err);
         }

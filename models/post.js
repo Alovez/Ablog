@@ -48,7 +48,8 @@ Post.prototype.save = function(callback) {
         });
     });
 };
-
+//一次获取10篇文章
+  
 Post.getAll = function(name, callback){
     
     mongodb.open(function(err, db){
@@ -102,7 +103,7 @@ Post.getOne = function(name, day, title, callback) {
                 }
                 if(doc){
                     doc.post = markdown.toHTML(doc.post);
-                    doc.comments.fopreach(function(comment){
+                    doc.comments.forEach(function(comment){
                         Comment.comtent = markdown.toHTML();
                     })
                 }
